@@ -1,4 +1,4 @@
-name: tppred
+name: sa-mtp
 channels:
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
@@ -87,4 +87,3 @@ dependencies:
       - wrapt==1.14.1
       - yarg==0.1.9
       - zipp==3.8.1
-prefix: E:\anaconda_env\tppred
