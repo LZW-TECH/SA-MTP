@@ -1,0 +1,10 @@
+# 大文件/结果产物
+features/esm2_embeddings.pkl
+*.pkl
+# 常见缓存
+__pycache__/
+*.pyc
+
+# IDE
+.idea/
+.vscode/

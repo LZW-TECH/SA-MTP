@@ -1,0 +1,75 @@
+
+d_fea: 40  # 原始特征维度 (20 one-hot + 20 PSSM)，当use_esm2=True时会被自动设置为esm_dim
+max_len: 50
+
+# ESM-2配置
+use_esm2: true  # 是否使用ESM-2特征替代one-hot+PSSM，设置为true以启用
+esm_dim: 1280  # ESM-2特征维度 (650M模型为1280)
+esm_cache_path: features/esm2_embeddings.pkl  # ESM-2特征缓存文件路径
+
+# GAT编码器配置 (需要use_esm2=true)
+use_gat: true  # 是否使用GAT编码器替代Transformer编码器
+beta: 4.0  # JS散度指数核参数
+lambda_weight: 0.25  # 已弃用，保留用于兼容旧模型
+top_k: null  # 稀疏化邻居数，null表示自动设置为min(10, L-1)
+ss2_dir: texture  # ss2文件根目录
+
+# 动态图融合策略配置
+use_learnable_lambda: true  # 是否使用可学习的融合参数λ（否则使用固定lambda_weight）
+lambda_init: 0.25  # λ的初始值（Sigmoid之前的logit），会被映射到[0,1]
+use_dropedge: true  # 是否在训练时使用DropEdge
+dropedge_rate: 0.1  # DropEdge丢弃边的概率 p_drop，范围[0,1]
+
+# FiLM分类头配置
+use_film: true  # 是否使用FiLM调制式分类头
+film_stable_mode: true  # 是否使用稳定调制结构（去除平移项，仅保留缩放）
+film_alpha: 0.2  # 门控幅度系数 α，控制调制强度
+film_dropout: 0.2  # FiLM分类头的dropout率
+lambda_film: 1e-4  # FiLM调制参数的L2正则化系数
+film_warmup_epochs: 3  # FiLM warm-up阶段的epoch数（冻结主干）
+
+# ESM-2投影层配置
+projection_hidden: 512  # ESM-2投影层隐藏层维度
+projection_dropout: 0.1  # ESM-2投影层的dropout率
+
+# 自适应阈值优化配置
+use_optimal_thresholds: true  # 是否使用优化的阈值
+threshold_metric: 'f1'  # 默认阈值优化指标 ('f1' 或 'mcc')
+
+# 混合阈值策略：为每个类别指定优化策略
+# 策略选项: 'f1' - F1优化, 'mcc' - MCC优化, 'fixed' - 固定阈值0.5
+threshold_strategy:
+  AMP: 'f1'
+  TXP: 'mcc'
+  ABP: 'mcc'
+  AIP: 'mcc'
+  AVP: 'mcc'
+  ACP: 'f1'
+  AFP: 'f1'
+  DDV: 'mcc'
+  CPP: 'fixed'
+  CCC: 'f1'
+  APP: 'fixed'
+  AAP: 'f1'
+  AHTP: 'fixed'
+  PBP: 'fixed'
+  QSP: 'fixed'
+
+pts:
+  - AMP.txt
+  - TXP.txt
+  - ABP.txt
+  - AIP.txt
+  - AVP.txt
+  - ACP.txt
+  - AFP.txt
+  - DDV.txt
+  - CPP.txt
+  - CCC.txt
+  - APP.txt
+  - AAP.txt
+  - AHTP.txt
+  - PBP.txt
+  - QSP.txt
+
+
