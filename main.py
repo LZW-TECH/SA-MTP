@@ -19,21 +19,21 @@ parser.add_argument('-b', type=int, default=64)
 parser.add_argument('-e', type=int, default=30)
 parser.add_argument('-lr', type=float, default=1e-4)
 parser.add_argument('-w', type=float, default=0)
-parser.add_argument('-pth', type=str, default='trained_models/test_basic_single.pth')
+parser.add_argument('-pth', type=str, default='trained_models/single.pth')
 parser.add_argument('-task', type=str, default=None)
 
 parser.add_argument('-s', type=str, default='instance')
 parser.add_argument('-e2', type=int, default=30)
 parser.add_argument('-lr2', type=float, default=1e-4)
 parser.add_argument('-w2', type=float, default=0)
-parser.add_argument('-pth2', type=str, default='trained_models/re_trans_model.pth')
+parser.add_argument('-pth2', type=str, default='trained_models/retrans.pth')
 parser.add_argument('-task2', type=str, default=None)
 
 parser.add_argument('-src', type=str, default='datasets/data/')
 parser.add_argument('-result_folder', type=str, default='results/')
 parser.add_argument('-act', type=str, nargs='+', default=['v'], help='Operation actions, t: train model; e: test_model') 
 parser.add_argument('-task3', type=str, default=None)
-parser.add_argument('-pth3', type=str, default='trained_models/re_trans_model.pth')
+parser.add_argument('-pth3', type=str, default='trained_models/retrans.pth')
 
 args = parser.parse_args()
 
@@ -80,7 +80,7 @@ for mode in args.act:
         pre = mode
 
     elif mode == 'v':
-        model.visualization(62, 'ABP', "trained_models/TPpred_tw_60_1.pth")  # 50, 292, 381, 926
+        model.visualization(62, 'ABP', "trained_models/TPpred1.pth")  # 50, 292, 381, 926
 
 
 
