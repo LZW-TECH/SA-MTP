@@ -5,3 +5,4 @@ The model leverages protein sequence representations to identify candidate thera
 conda env create -f environment.yml
 conda activate sa-mtp
 Process the datasets in datasets/data using ESM-2 and save the extracted features to features/; create the directories logs/, results/, and trained_models/.
+python -u main.py
